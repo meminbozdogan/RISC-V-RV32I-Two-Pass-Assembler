@@ -1,0 +1,49 @@
+{
+    "header": {
+        "text_size": 68,
+        "data_size": 0
+    },
+    "text_segment": [
+        "40000113",
+        "00100093",
+        "04000493",
+        "00112023",
+        "004C41B7",
+        "FFF18193",
+        "FE019EE3",
+        "00109093",
+        "FE90C6E3",
+        "0010D093",
+        "00112023",
+        "004C41B7",
+        "FFF18193",
+        "FE019EE3",
+        "FE0096E3",
+        "00100093",
+        "FCDFF06F"
+    ],
+    "data_segment": [],
+    "symbol_table": {
+        "sola_kaydir": {
+            "adres": 12,
+            "tip": "local",
+            "segment": ".text"
+        },
+        "gecikme_sola": {
+            "adres": 20,
+            "tip": "local",
+            "segment": ".text"
+        },
+        "saga_kaydir": {
+            "adres": 36,
+            "tip": "local",
+            "segment": ".text"
+        },
+        "gecikme_saga": {
+            "adres": 48,
+            "tip": "local",
+            "segment": ".text"
+        }
+    },
+    "relocation_table": []
+}

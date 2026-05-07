@@ -1,0 +1,50 @@
+{
+    "header": {
+        "text_size": 16,
+        "data_size": 8
+    },
+    "text_segment": [
+        "00002083",
+        "00402103",
+        "0000056F",
+        "00000063"
+    ],
+    "data_segment": [
+        "00000064",
+        "000000C8"
+    ],
+    "symbol_table": {
+        "veri_bir": {
+            "adres": 0,
+            "tip": "local",
+            "segment": ".data"
+        },
+        "veri_iki": {
+            "adres": 4,
+            "tip": "local",
+            "segment": ".data"
+        },
+        "main": {
+            "adres": 0,
+            "tip": "global",
+            "segment": ".text"
+        },
+        "islem_yap": {
+            "adres": null,
+            "tip": "extern",
+            "segment": "EXTERN"
+        },
+        "bitir": {
+            "adres": 12,
+            "tip": "local",
+            "segment": ".text"
+        }
+    },
+    "relocation_table": [
+        {
+            "adres": 8,
+            "hedef_sembol": "islem_yap",
+            "komut_tipi": "J-Type"
+        }
+    ]
+}

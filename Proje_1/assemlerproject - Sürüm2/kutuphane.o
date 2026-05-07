@@ -1,0 +1,19 @@
+{
+    "header": {
+        "text_size": 8,
+        "data_size": 0
+    },
+    "text_segment": [
+        "002081B3",
+        "00050067"
+    ],
+    "data_segment": [],
+    "symbol_table": {
+        "islem_yap": {
+            "adres": 0,
+            "tip": "global",
+            "segment": ".text"
+        }
+    },
+    "relocation_table": []
+}

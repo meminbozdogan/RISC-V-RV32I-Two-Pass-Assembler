@@ -1,0 +1,53 @@
+{
+    "header": {
+        "text_size": 28,
+        "data_size": 12
+    },
+    "text_segment": [
+        "00002083",
+        "00402103",
+        "0000056F",
+        "00302423",
+        "00018A63",
+        "00100213",
+        "00200293"
+    ],
+    "data_segment": [
+        "0000000F",
+        "00000019",
+        "00000000"
+    ],
+    "symbol_table": {
+        "deger_bir": {
+            "adres": 0,
+            "tip": "local"
+        },
+        "deger_iki": {
+            "adres": 4,
+            "tip": "local"
+        },
+        "sonuc": {
+            "adres": 8,
+            "tip": "local"
+        },
+        "main": {
+            "adres": 12,
+            "tip": "global"
+        },
+        "ozel_islem": {
+            "adres": null,
+            "tip": "extern"
+        },
+        "atla": {
+            "adres": 36,
+            "tip": "local"
+        }
+    },
+    "relocation_table": [
+        {
+            "adres": 8,
+            "hedef_sembol": "ozel_islem",
+            "komut_tipi": "J-Type"
+        }
+    ]
+}
