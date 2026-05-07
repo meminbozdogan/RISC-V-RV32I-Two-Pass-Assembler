@@ -18,5 +18,20 @@ opcode_table = {
     
     # B-Type Komutlar (Branch)
     # Format: imm[12|10:5] + rs2 + rs1 + funct3 + imm[4:1|11] + opcode
-    "beq":  {"type": "B", "opcode": "1100011", "funct3": "000"}
+    "beq":  {"type": "B", "opcode": "1100011", "funct3": "000"},
+    "blt":  {"type": "B", "opcode": "1100011", "funct3": "100"},
+    "bne":  {"type": "B", "opcode": "1100011", "funct3": "001"},
+    
+    # J-Type Komutlar (Jump)
+    # Format: imm[20|10:1|11|19:12] + rd + opcode
+    "jal":  {"type": "J", "opcode": "1101111"},
+    
+    # U-Type Komutlar
+    "lui":  {"type": "U", "opcode": "0110111"},
+    
+    # I-Type (Jump and Link Register)
+    # Format: imm[11:0] + rs1 + funct3 + rd + opcode
+    "jalr": {"type": "I", "opcode": "1100111", "funct3": "000"},
+    "slli": {"type": "I", "opcode": "0010011", "funct3": "001"},
+    "srli": {"type": "I", "opcode": "0010011", "funct3": "101"},
 }

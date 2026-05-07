@@ -17,7 +17,10 @@ def reg_to_bin(reg_str):
 
 def imm_to_bin(imm_val, bits):
     """Sabit sayıları istenen bit uzunluğunda binary yapar (İkiye Tümleyen destekli)."""
-    imm = int(imm_val)
+    if isinstance(imm_val, str) and (imm_val.lower().startswith("0x") or imm_val.lower().startswith("-0x")):
+        imm = int(imm_val, 16)
+    else:
+        imm = int(imm_val)
     if imm < 0:
         imm = (1 << bits) + imm
     return format(imm, f'0{bits}b')
