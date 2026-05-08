@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, scrolledtext, messagebox, filedialog
 import os
+import json
 
 from assembler import assemble
 from linker import link
@@ -81,16 +82,24 @@ def cevir_butonuna_tiklandi():
                         except:
                             pass
                         break
-                parsed_files.append((order, ham_kod))
+                parsed_files.append((order, ham_kod, dosya_yolu))
         
         # .start numarasına göre sırala
         parsed_files.sort(key=lambda x: x[0])
         
         objects = []
-        for order, ham_kod in parsed_files:
+        for order, ham_kod, dosya_yolu in parsed_files:
             obj = assemble(ham_kod)
             if obj:
-                objects.append(obj)
+                # O Dosyasını oluştur (JSON formatında kaydet)
+                obj_yolu = dosya_yolu.replace(".asm", ".o")
+                with open(obj_yolu, "w", encoding="utf-8") as f:
+                    json.dump(obj, f, indent=4)
+                
+                # O Dosyasını geri oku (Linker için simülasyon)
+                with open(obj_yolu, "r", encoding="utf-8") as f:
+                    okunan_obj = json.load(f)
+                objects.append(okunan_obj)
         
         if not objects:
             messagebox.showwarning("Uyarı", "Okunan dosyalarda derlenecek geçerli kod bulunamadı.")
