@@ -9,7 +9,7 @@ module my_prom (
         $readmemh("src/ledsirali.hex", mem);
     end
 
-    // Gecikmesiz kombinasyonel okuma
+   
     assign dout = (ce) ? mem[ad[7:2]] : 32'h0;
 
 endmodule
