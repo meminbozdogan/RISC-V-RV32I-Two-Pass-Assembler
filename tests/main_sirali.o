@@ -1,0 +1,105 @@
+{
+    "text_segment": [
+        {
+            "original": "addi x2, x0, 1024",
+            "binary": "01000000000000000000000100010011",
+            "hex": "40000113",
+            "offset": 0,
+            "type": "I"
+        },
+        {
+            "original": "addi x1, x0, 1",
+            "binary": "00000000000100000000000010010011",
+            "hex": "00100093",
+            "offset": 4,
+            "type": "I"
+        },
+        {
+            "original": "addi x9, x0, 64",
+            "binary": "00000100000000000000010010010011",
+            "hex": "04000493",
+            "offset": 8,
+            "type": "I"
+        },
+        {
+            "original": "sw x1, 0(x2)",
+            "binary": "00000000000100010010000000100011",
+            "hex": "00112023",
+            "offset": 12,
+            "type": "S"
+        },
+        {
+            "original": "lui x3, 0x004C4",
+            "binary": "00000000010011000100000110110111",
+            "hex": "004C41B7",
+            "offset": 16,
+            "type": "U"
+        },
+        {
+            "original": "addi x3, x3, -1",
+            "binary": "11111111111100011000000110010011",
+            "hex": "FFF18193",
+            "offset": 20,
+            "type": "I"
+        },
+        {
+            "original": "bne x3, x0, GECIKME_1",
+            "binary": "00000000000000011001000001100011",
+            "hex": "00019063",
+            "offset": 24,
+            "type": "B"
+        },
+        {
+            "original": "slli x1, x1, 1",
+            "binary": "00000000000100001001000010010011",
+            "hex": "00109093",
+            "offset": 28,
+            "type": "I"
+        },
+        {
+            "original": "blt x1, x9, SOLA_KAYDIR",
+            "binary": "00000000100100001100000001100011",
+            "hex": "0090C063",
+            "offset": 32,
+            "type": "B"
+        }
+    ],
+    "data_segment": [],
+    "symbol_table": {
+        "main": {
+            "offset": 0,
+            "section": "text",
+            "is_global": false
+        },
+        "SOLA_KAYDIR": {
+            "offset": 12,
+            "section": "text",
+            "is_global": true
+        },
+        "GECIKME_1": {
+            "offset": 20,
+            "section": "text",
+            "is_global": false
+        }
+    },
+    "relocation_table": [
+        {
+            "offset": 24,
+            "label": "GECIKME_1",
+            "type": "B_TYPE",
+            "rs1": "00011",
+            "rs2": "00000",
+            "funct3": "001",
+            "opcode": "1100011"
+        },
+        {
+            "offset": 32,
+            "label": "SOLA_KAYDIR",
+            "type": "B_TYPE",
+            "rs1": "00001",
+            "rs2": "01001",
+            "funct3": "100",
+            "opcode": "1100011"
+        }
+    ]
+}

@@ -1,0 +1,41 @@
+// =============================================================================
+// Tang Nano 9K (Gowin GW1NR-9) Pin Kısıtları
+// Proje: PicoRV32 FPGA Tabanlı Loader Sistemi
+// =============================================================================
+
+// Saat Sinyali (Pin 52 - Dahili 27 MHz Osilatör)
+IO_LOC "clk" 52;
+IO_PORT "clk" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+// Reset Butonu (S1 Butonu - Pin 4, Bank 3)
+IO_LOC "reset_btn" 4;
+IO_PORT "reset_btn" IO_TYPE=LVCMOS18 PULL_MODE=UP;
+
+// LED'ler (Pin 10, 11, 13, 14, 15, 16 - Hepsi Bank 3)
+IO_LOC "leds[0]" 10;
+IO_LOC "leds[1]" 11;
+IO_LOC "leds[2]" 13;
+IO_LOC "leds[3]" 14;
+IO_LOC "leds[4]" 15;
+IO_LOC "leds[5]" 16;
+
+// LVCMOS18 kullanarak Bank 3 voltaj uyumu sağlandı
+IO_PORT "leds[0]" IO_TYPE=LVCMOS18 DRIVE=8 PULL_MODE=UP;
+IO_PORT "leds[1]" IO_TYPE=LVCMOS18 DRIVE=8 PULL_MODE=UP;
+IO_PORT "leds[2]" IO_TYPE=LVCMOS18 DRIVE=8 PULL_MODE=UP;
+IO_PORT "leds[3]" IO_TYPE=LVCMOS18 DRIVE=8 PULL_MODE=UP;
+IO_PORT "leds[4]" IO_TYPE=LVCMOS18 DRIVE=8 PULL_MODE=UP;
+IO_PORT "leds[5]" IO_TYPE=LVCMOS18 DRIVE=8 PULL_MODE=UP;
+
+// =============================================================================
+// UART Seri Haberleşme Pinleri
+// Tang Nano 9K üzerindeki USB-C bağlantısı (BL616 USB-UART köprüsü)
+// Pin 17: UART TX (FPGA → PC) 
+// Pin 18: UART RX (PC → FPGA)
+// Bu pinler Bank 3'te, LVCMOS18 ile çalışır
+// =============================================================================
+IO_LOC "uart_tx" 17;
+IO_PORT "uart_tx" IO_TYPE=LVCMOS18 DRIVE=8;
+
+IO_LOC "uart_rx" 18;
+IO_PORT "uart_rx" IO_TYPE=LVCMOS18 PULL_MODE=UP;
