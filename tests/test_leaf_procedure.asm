@@ -13,14 +13,14 @@ main:
     # Alt programı çağır
     jal x1, YAPRAK_FONKSIYON
 
-    # Sonucu RAM'e yaz
+    # Sonucu RAM'e yaz (Adres: 0x0800)
     lui x15, 1
-    addi x15, x15, 0
+    addi x15, x15, -2048
     sw x14, 0(x15)
 
     # --- BAŞARI IŞIĞI ---
-    lui x30, 0x10000     # x30 = 0x10000000 (LED Adresi)
-    addi x31, x0, 15     # x31 = 15 (Sağ 4 LED'i yak)
+    addi x30, x0, 1024   # x30 = 0x0400 (LED Adresi)
+    addi x31, x0, 255    # x31 = 255 (Tüm LED'leri yak)
     sw x31, 0(x30)       # Donanıma yaz
 
 ANA_PROGRAM_BITIS:

@@ -319,7 +319,7 @@ class UARTLoader:
             makine_kodu = self.load_hex_file(filepath)
         except (FileNotFoundError, ValueError, IOError) as e:
             print(str(e))
-            return False
+            return False, 0.0
 
         # Veriyi parçalara ayır
         parcalar = []
@@ -331,19 +331,21 @@ class UARTLoader:
         print(f"[BİLGİ] Toplam {toplam_paket} paket gönderilecek")
         print("-" * 50)
 
+        # ==========================================
+        # ⏱️ KRONOMETREYİ BAŞLAT
+        # ==========================================
+        import time
+        baslangic_zamani = time.time()
+
         # Her parçayı DATA_WRITE paketi olarak gönder
         for idx, parca in enumerate(parcalar):
             mevcut_paket = idx + 1
             basarili = self.send_packet_with_retry(self.CMD_DATA_WRITE, parca)
 
             if not basarili:
-                print(
-                    f"[HATA] Paket {mevcut_paket}/{toplam_paket} gönderilemedi. "
-                    f"Yükleme iptal edildi."
-                )
-                return False
+                print(f"[HATA] Paket {mevcut_paket}/{toplam_paket} gönderilemedi. Yükleme iptal edildi.")
+                return False, 0.0
 
-            # İlerleme bildirimini çağır
             if progress_callback is not None:
                 progress_callback(mevcut_paket, toplam_paket)
 
@@ -354,12 +356,20 @@ class UARTLoader:
         print("[BİLGİ] İşlemci başlatma komutu (BOOT_CPU) gönderiliyor...")
         basarili = self.send_packet_with_retry(self.CMD_BOOT_CPU)
 
+        # ==========================================
+        # ⏱️ KRONOMETREYİ DURDUR VE HESAPLA
+        # ==========================================
+        bitis_zamani = time.time()
+        gecen_sure_ms = (bitis_zamani - baslangic_zamani) * 1000 # Saniyeyi milisaniyeye çevir
+
         if basarili:
             print("[BİLGİ] İşlemci başarıyla başlatıldı!")
-            return True
+            # Konsola süreyi yazdır:
+            print(f"📊 GERÇEKLEŞEN YÜKLEME SÜRESİ: {gecen_sure_ms:.2f} milisaniye")
+            return True, gecen_sure_ms
         else:
             print("[HATA] İşlemci başlatma komutu başarısız oldu")
-            return False
+            return False, 0.0
 
     @staticmethod
     def get_available_ports() -> list:
@@ -385,7 +395,7 @@ class UARTLoader:
 
 
 def upload_program(port: str, filepath: str, baudrate: int = 115200,
-                   progress_callback=None) -> bool:
+                   progress_callback=None) -> tuple:
     """
     Arayüzden doğrudan çağrılabilecek wrapper fonksiyon.
 
@@ -502,7 +512,7 @@ if __name__ == '__main__':
     print("=" * 50)
 
     try:
-        sonuc = upload_program(
+        sonuc, gecen_sure = upload_program(
             port=args.port,
             filepath=args.file,
             baudrate=args.baud,
@@ -510,7 +520,7 @@ if __name__ == '__main__':
         )
 
         if sonuc:
-            print("\n✓ Program FPGA'ya başarıyla yüklendi!")
+            print(f"\n✓ Program FPGA'ya başarıyla yüklendi! (Süre: {gecen_sure:.2f} ms)")
             sys.exit(0)
         else:
             print("\n✗ Program yükleme başarısız oldu!")

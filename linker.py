@@ -1,7 +1,7 @@
 from utils import imm_to_bin
 
 TEXT_BASE = 0x00000000
-DATA_BASE = 0x00001000
+DATA_BASE = 0x00000800
 
 def link(object_files):
     """

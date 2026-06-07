@@ -122,7 +122,7 @@ def fpga_yukle():
     def yukleme_islemi():
         """Yükleme işlemini ayrı bir thread'de çalıştırır."""
         try:
-            sonuc = upload_program(
+            sonuc, sure_ms = upload_program(
                 port=secili_port,
                 filepath=temp_hex_path,
                 baudrate=baud,
@@ -131,8 +131,8 @@ def fpga_yukle():
             def bitir():
                 if sonuc:
                     progress_bar['value'] = 100
-                    lbl_durum.config(text="✅ Yükleme başarılı! İşlemci başlatıldı.")
-                    messagebox.showinfo("Başarılı", "Program FPGA'ya başarıyla yüklendi!\nİşlemci çalışmaya başladı.")
+                    lbl_durum.config(text=f"✅ Yükleme başarılı! Süre: {sure_ms:.2f} ms")
+                    messagebox.showinfo("Başarılı", f"Program FPGA'ya başarıyla yüklendi!\nYükleme süresi: {sure_ms:.2f} ms")
                 else:
                     lbl_durum.config(text="❌ Yükleme başarısız!")
                     messagebox.showerror("Hata", "FPGA'ya program yükleme başarısız oldu.\nBağlantıyı ve portu kontrol edin.")
