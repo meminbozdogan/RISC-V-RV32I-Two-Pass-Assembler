@@ -20,8 +20,6 @@
 // Checksum:
 //   (~toplam(CMD + LEN_LO + LEN_HI + PAYLOAD)) & 0xFF
 //
-// Yazar       : Otomatik oluşturuldu
-// Tarih       : 2026-06-03
 //=============================================================================
 
 module loader #(
