@@ -5,8 +5,6 @@
 //               - LSB önce alınır
 //               - Metastabilite koruması için 2 aşamalı senkronizör içerir
 //               - Baud hızı, saat frekansına göre otomatik hesaplanır
-// Yazar       : Otomatik oluşturuldu
-// Tarih       : 2026-05-29
 //=============================================================================
 
 module uart_rx #(

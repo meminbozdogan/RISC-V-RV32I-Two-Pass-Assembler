@@ -5,8 +5,6 @@
 //               - LSB önce gönderilir
 //               - tx hattı boşta iken HIGH seviyesindedir
 //               - tx_busy sinyali iletim süresince HIGH kalır
-// Yazar       : Otomatik oluşturuldu
-// Tarih       : 2026-05-29
 //=============================================================================
 
 module uart_tx #(
